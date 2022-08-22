@@ -1,13 +1,13 @@
 import {Service} from "./app/service";
 import {mock, Mock} from "../ts-jest-mocker";
-import {Repository} from "./app/repository";
+import {IRepository} from "./app/repository";
 
 describe('Class', () => {
     let service: Service;
-    let repositoryMock: Mock<Repository>;
+    let repositoryMock: Mock<IRepository>;
 
     beforeEach(() => {
-        repositoryMock = mock(Repository);
+        repositoryMock = mock<IRepository>();
         repositoryMock.getBoolean.mockReturnValue(true);
 
         service = new Service(repositoryMock);
