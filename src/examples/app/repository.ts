@@ -11,7 +11,12 @@ export interface IRepository {
 }
 
 export class Repository implements IRepository {
+    private readonly logger: any;
+    public xyz: string;
+
     constructor(private readonly name: string) {
+        this.logger = {};
+        this.xyz = 'xyz';
     }
 
     async isInitialized(): Promise<boolean> {
