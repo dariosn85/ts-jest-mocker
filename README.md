@@ -1,7 +1,7 @@
 <h1>ts-jest-mocker</h1>
 
 Powerful, lightweight, TypeScript-friendly and 100% [Jest](https://github.com/facebook/jest#readme) API compatible library
-which simplifies mocking of classes and interfaces.
+which simplifies classes and interfaces mocking.
 
 [![npm version](https://badge.fury.io/js/ts-jest-mocker.svg)](https://badge.fury.io/js/ts-jest-mocker)
 [![Build](https://github.com/dariosn85/ts-jest-mocker/actions/workflows/build.yml/badge.svg)](https://github.com/dariosn85/ts-jest-mocker/actions/workflows/build.yml)
