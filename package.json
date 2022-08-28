@@ -1,6 +1,6 @@
 {
   "name": "ts-jest-mocker",
-  "version": "0.4.0",
+  "version": "0.4.0-alpha.1",
   "description": "Powerful, lightweight and TypeScript friendly library that extends Jest with capability of mocking classes and interfaces.",
   "publishConfig": {
     "access": "public"
