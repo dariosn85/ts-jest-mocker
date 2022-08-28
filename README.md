@@ -151,7 +151,7 @@ const mockUserRepository = {
 
     // ...
 
-    // ⁉️ you have to mock all the methods, so mock and UsersRepository are compatible?
+    // ❌️ you have to mock all the methods, so mock and UsersRepository are compatible?
     yourMethod20: jest.fn()
 };
 
@@ -163,7 +163,7 @@ const mockUserRepository = {
     yourMethod1: jest.fn(),
     yourMethod2: jest.fn()
 } as any;
-// ⁉️ you mock only what you need and then cast explicitly to any and loose benefits from copilation phase?
+// ❌ you mock only what you need and then cast explicitly to any and loose benefits from copilation phase?
 
 const userService = new UserService(mockUserRepository);
 ```
@@ -173,7 +173,7 @@ const mockUserRepository = {
     yourMethod1: jest.fn(),
 };
 
-// ⁉️ You often skip specifying mock types like jest.fn<User, [User]>() and then need to
+// ❌️ You often skip specifying mock types like jest.fn<User, [User]>() and then need to
 // check over and over again in the code what actually mocked methods should return?
 mockUserRepository.yourMethod1.mockReturnedValue({
     name: 'User1',
