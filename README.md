@@ -129,12 +129,80 @@ ts-jest-mocker is not an alternative to Jest and does not provide an alternative
 which main purpose is to add additional capability on top of Jest to simplify writing mocks and
 keep all the benefits of typing.
 
-## Why to use ts-jest-mocker
+## Why to use ts-jest-mocker?
 
-| :white_check_mark: Do this |
-|----------------------------|
-| ```typescript```           |
+Do you often catch yourself writing mocks manually using `jest.fn()`? Do you maybe omit defining
+`jest.Mock` type generics and implicitly end up using `any`, or what's worse, you need to explicitly
+convert your mocks to `any` to be able to use them with classes under test? It is hard to do refactoring
+and keeping unit tests up-to-date?
 
-| :x: Don't do this |
-|-------------------|
-| test              |
+The above :point_up_2: sounds familiar to you? Stop doing that! ts-jest-mocker will help you do that!
+
+#### ❌ Don'ts
+
+```typescript
+const mockUserRepository = {
+    yourMethod1: jest.fn(),
+    yourMethod2: jest.fn(),
+    yourMethod3: jest.fn(),
+    yourMethod4: jest.fn(),
+    yourMethod5: jest.fn(),
+    yourMethod6: jest.fn(),
+
+    // ...
+
+    // ⁉️ you have to mock all the methods, so mock and UsersRepository are compatible?
+    yourMethod20: jest.fn()
+};
+
+const userService = new UserService(mockUserRepository);
+```
+
+```typescript
+const mockUserRepository = {
+    yourMethod1: jest.fn(),
+    yourMethod2: jest.fn()
+} as any;
+// ⁉️ you mock only what you need and then cast explicitly to any and loose benefits from copilation phase?
+
+const userService = new UserService(mockUserRepository);
+```
+
+```typescript
+const mockUserRepository = {
+    yourMethod1: jest.fn(),
+};
+
+// ⁉️ You often skip specifying mock types like jest.fn<User, [User]>() and then need to
+// check over and over again in the code what actually mocked methods should return?
+mockUserRepository.yourMethod1.mockReturnedValue({
+    name: 'User1',
+    age: 20
+});
+
+const userService = new UserService(mockUserRepository as any);
+```
+
+#### ✅ Do's
+
+```typescript
+// ✅ simply use mock() function and ts-jest-mocker will provide mocks for all the methods for you
+const mockUserRepository = mock(UsersRepository);
+
+mockUserRepository.yourMethod1.mockReturnedValue({
+    name: 'User1',
+    age: 20
+}); // ✅ return type is automatically checked while compilation
+
+mockUserRepository.yourMethod1.mockReturnedValue({
+    name: 'User1'
+}); // ❗ [compilation error] - you will catch incorrect types
+
+mockUserRepository.yourMethod1.mockReturnedValue({
+    age: 20
+}); // ❗ [compilation error] - you will catch incorrect types
+
+mockUserRepository.yourMethod1.mockReturnedValue(true); // ❗ [compilation error] - you will catch incorrect types
+
+const userService = new UserService(mockUserRepository);
+```
