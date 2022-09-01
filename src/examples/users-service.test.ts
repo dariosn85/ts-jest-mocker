@@ -1,4 +1,4 @@
-import {mock} from "../ts-jest-mocker";
+import {mock} from "ts-jest-mocker";
 import {UsersRepository} from "./users-repository";
 import {UsersService} from "./users-service";
 

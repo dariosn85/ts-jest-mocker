@@ -52,7 +52,7 @@ This service has dependency to `UsersRepository` which is used to load users fro
 
 `users-repository.ts` file:
 
-```typescript
+```typescript title="users-repository.ts"
 export interface User {
     name: string
     age: number;
@@ -75,7 +75,7 @@ export class UsersRepository {
 
 `users-service.ts` file:
 
-```typescript
+```typescript title="users-service.ts"
 import {User, UsersRepository} from "./users-repository";
 
 export class UsersService {
@@ -94,7 +94,7 @@ automatically using `jest.fn()` internally and all type-checking will work out-o
 
 `users-service.test.ts` file:
 
-```typescript
+```typescript title="users-service.test.ts"
 import {mock} from "ts-jest-mocker";
 import {UsersRepository} from "./users-repository";
 import {UsersService} from "./users-service";
@@ -128,6 +128,9 @@ describe('UsersService', () => {
 ts-jest-mocker is not an alternative to Jest and does not provide an alternative API. It is utility
 which main purpose is to add additional capability on top of Jest to simplify writing mocks and
 keep all the benefits of typing.
+
+While using ts-jest-mocker you don't need to use any custom calls to reset mock or anything.
+You call for example `jest.resetAllMocks()` as you usually do. 
 
 ## Why to use ts-jest-mocker?
 
