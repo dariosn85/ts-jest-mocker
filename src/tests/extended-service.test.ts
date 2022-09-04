@@ -35,8 +35,8 @@ class SimpleService {
     }
 }
 
-xdescribe('Simple service', () => {
-    it('should ', async () => {
+describe('Simple service', () => {
+    it('should be able to mock methods from extended class', async () => {
         // GIVEN
         const repository = mock(Repository);
         const service = new SimpleService(repository);

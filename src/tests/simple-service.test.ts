@@ -10,6 +10,10 @@ class SimpleRepository {
     async doSomething(): Promise<string> {
         return 'value1';
     }
+
+    async doSomethingElse(value: string): Promise<boolean> {
+        return true;
+    }
 }
 
 class SimpleService {
@@ -60,5 +64,22 @@ describe('Simple service', () => {
         // WHEN
         // THEN
         expect(repository.simpleValue).toBe('13');
+    });
+
+    it('should provide types for parameters', async () => {
+        // GIVEN
+        const repository = mock(SimpleRepository);
+
+        // WHEN
+        await repository.doSomethingElse('call1');
+        await repository.doSomethingElse('call2');
+
+        // THEN
+        expect(repository.doSomethingElse.mock.calls.length).toBe(2);
+        expect(repository.doSomethingElse.mock.calls[0][0]).toBe('call1');
+        expect(repository.doSomethingElse.mock.calls[1][0]).toBe('call2');
+        // repository.doSomethingElse.mock.calls[0][5]; // compilation error as doSomethingElse() parameter has only 1 parameter, not 5
+        // repository.doSomethingElse.mock.calls[0][0] = true; // compilation error as doSomethingElse() parameter should be string
+        // repository.doSomethingElse.mock.calls[0][0] = 'false'; // compilation error as doSomethingElse() has only one parameter
     });
 });
