@@ -1,12 +1,12 @@
 {
   "name": "ts-jest-mocker",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Powerful, lightweight and TypeScript friendly library that extends Jest with capability of mocking classes and interfaces.",
   "publishConfig": {
     "access": "public"
   },
-  "main": "lib/ts-jest-mocker.js",
-  "typings": "lib/ts-jest-mocker.d.ts",
+  "main": "lib/lib/index.js",
+  "typings": "lib/lib/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "rimraf ./lib && tsc"
@@ -20,7 +20,9 @@
     "typescript",
     "mock",
     "class",
-    "interface"
+    "interface",
+    "unit",
+    "tests"
   ],
   "author": "Dario Snajder",
   "license": "ISC",
@@ -39,7 +41,6 @@
     "jest": "^28.1.3"
   },
   "files": [
-    "lib/ts-jest-mocker.js",
-    "lib/ts-jest-mocker.d.ts"
+    "lib/lib/*"
   ]
 }
