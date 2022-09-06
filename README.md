@@ -32,6 +32,8 @@ npm install --save-dev ts-jest-mocker
 ### Mocking classes
 
 ```typescript
+import {mock} from "ts-jest-mocker";
+
 const serviceMock = mock(YourService); // automatically mocks all methods
 
 serviceMock.yourMethod.mockReturnValue('Test');
@@ -40,9 +42,23 @@ serviceMock.yourMethod.mockReturnValue('Test');
 ### Mocking interfaces
 
 ```typescript
+import {mock} from "ts-jest-mocker";
+
 const interfaceMock = mock<YourInterface>(); // automatically mocks all interface methods
 
 interfaceMock.yourMethod.mockReturnValue('Test');
+```
+
+### Using `Mock` type
+
+```typescript
+import {Mock, mock} from "ts-jest-mocker";
+
+let serviceMock: Mock<YourService>;
+
+serviceMock = mock(YourService);
+
+serviceMock.yourMethod.mockReturnValue('Test');
 ```
 
 ## More advanced example
