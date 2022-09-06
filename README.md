@@ -127,7 +127,7 @@ describe('UsersService', () => {
 
 ts-jest-mocker is not an alternative to Jest and does not provide an alternative API. It is utility
 which main purpose is to add additional capability on top of Jest to simplify writing mocks and
-keep all the benefits of typing.
+keep all the benefits of data types.
 
 While using ts-jest-mocker you don't need to use any custom calls to reset mock or anything.
 You call for example `jest.resetAllMocks()` as you usually do. 
@@ -168,7 +168,7 @@ const mockUserRepository = {
     yourMethod2: jest.fn()
 } as any;
 // ❌ you mock only what you need and then cast explicitly to any
-// and loose benefits from copilation phase?
+// and loose benefits from compilation phase?
 
 const userService = new UserService(mockUserRepository);
 ```
