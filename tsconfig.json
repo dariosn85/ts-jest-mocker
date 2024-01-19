@@ -113,4 +113,5 @@
         },
         "baseUrl": ".",
     },
+    "exclude": ["jest.config.ts"],
 }
