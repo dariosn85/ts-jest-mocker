@@ -1,8 +1,8 @@
-import {createClassProxy} from "./proxy-class";
-import {Mock} from "./types";
-import {createGenericProxy} from "./proxy-generic";
+import { createClassProxy } from './proxy-class';
+import { Mock } from './types';
+import { createGenericProxy } from './proxy-generic';
 
-export function mock<T>(clazz?: { new(...args: any[]): T }): Mock<T> {
+export function mock<T>(clazz?: { new (...args: any[]): T }): Mock<T> {
     if (clazz) {
         return createClassProxy<T>(clazz);
     }
@@ -10,4 +10,4 @@ export function mock<T>(clazz?: { new(...args: any[]): T }): Mock<T> {
     return createGenericProxy<T>();
 }
 
-export {Mock} from './types';
+export { Mock } from './types';

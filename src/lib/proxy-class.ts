@@ -1,5 +1,5 @@
-import {Class, Mock} from "./types";
-import {FunctionsFinder} from "./functions-finder";
+import { Class, Mock } from './types';
+import { FunctionsFinder } from './functions-finder';
 
 export const createClassProxy = <T>(clazz: Class<T>): Mock<T> => {
     const functions = FunctionsFinder.find(clazz);
@@ -14,6 +14,6 @@ export const createClassProxy = <T>(clazz: Class<T>): Mock<T> => {
             }
 
             return target[property];
-        }
+        },
     });
-}
+};

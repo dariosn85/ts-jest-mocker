@@ -1,4 +1,4 @@
-import {FunctionsFinder} from "./functions-finder";
+import { FunctionsFinder } from './functions-finder';
 
 export class TestClass {
     private readonly testValue: string;

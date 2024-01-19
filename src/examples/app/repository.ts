@@ -32,10 +32,8 @@ export class Repository implements IRepository {
     }
 
     getString(): string {
-        return "Test string";
+        return 'Test string';
     }
 
-    setString(str: string): void {
-    }
-
+    setString(str: string): void {}
 }

@@ -1,8 +1,7 @@
-import {Repository} from "./repository";
+import { Repository } from './repository';
 
 export class Service2 {
-    constructor(private readonly repository: Repository) {
-    }
+    constructor(private readonly repository: Repository) {}
 
     doSomething(): string {
         return this.repository.getString();

@@ -1,5 +1,5 @@
 export interface User {
-    name: string
+    name: string;
     age: number;
 }
 
@@ -8,11 +8,12 @@ export class UsersRepository {
         return [
             {
                 name: 'User1',
-                age: 30
-            }, {
+                age: 30,
+            },
+            {
                 name: 'User2',
-                age: 40
-            }
-        ]
+                age: 40,
+            },
+        ];
     }
 }

@@ -1,8 +1,7 @@
-import {IRepository} from "./repository";
+import { IRepository } from './repository';
 
 export class Service {
-    constructor(private readonly repository: IRepository) {
-    }
+    constructor(private readonly repository: IRepository) {}
 
     async doSomething(): Promise<boolean> {
         const isInitialized = await this.repository.isInitialized();

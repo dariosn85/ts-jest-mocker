@@ -1,12 +1,11 @@
-import {mock} from "ts-jest-mocker";
+import { mock } from 'ts-jest-mocker';
 
 interface SimpleInterface {
     doSomething(): Promise<string>;
 }
 
 class SimpleService {
-    constructor(private readonly repository: SimpleInterface) {
-    }
+    constructor(private readonly repository: SimpleInterface) {}
 
     doSomething(): Promise<string> {
         return this.repository.doSomething();

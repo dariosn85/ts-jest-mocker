@@ -1,4 +1,4 @@
-import {createClassProxy} from "./proxy-class";
+import { createClassProxy } from './proxy-class';
 
 class TestClass {
     method1(): boolean {

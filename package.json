@@ -1,46 +1,52 @@
 {
-  "name": "ts-jest-mocker",
-  "version": "0.5.0",
-  "description": "Powerful, lightweight and TypeScript friendly library that extends Jest with capability of mocking classes and interfaces.",
-  "publishConfig": {
-    "access": "public"
-  },
-  "main": "lib/lib/index.js",
-  "typings": "lib/lib/index.d.ts",
-  "scripts": {
-    "test": "jest",
-    "build": "rimraf ./lib && tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dariosn85/ts-jest-mocker.git"
-  },
-  "keywords": [
-    "jest",
-    "typescript",
-    "mock",
-    "class",
-    "interface",
-    "unit",
-    "tests"
-  ],
-  "author": "Dario Snajder",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dariosn85/ts-jest-mocker/issues"
-  },
-  "homepage": "https://github.com/dariosn85/ts-jest-mocker#readme",
-  "devDependencies": {
-    "@types/jest": "^28.1.7",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^28.0.8",
-    "typescript": "^4.7.4"
-  },
-  "dependencies": {
-    "@types/jest": "^28.1.7",
-    "jest": "^28.1.3"
-  },
-  "files": [
-    "lib/lib/*"
-  ]
+    "name": "ts-jest-mocker",
+    "version": "0.5.0",
+    "description": "Powerful, lightweight and TypeScript friendly library that extends Jest with capability of mocking classes and interfaces.",
+    "publishConfig": {
+        "access": "public"
+    },
+    "main": "lib/lib/index.js",
+    "typings": "lib/lib/index.d.ts",
+    "scripts": {
+        "prepare": "husky install",
+        "test": "jest",
+        "build": "rimraf ./lib && tsc",
+        "format:check": "prettier . --check",
+        "format": "prettier . --write"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dariosn85/ts-jest-mocker.git"
+    },
+    "keywords": [
+        "jest",
+        "typescript",
+        "mock",
+        "class",
+        "interface",
+        "unit",
+        "tests"
+    ],
+    "author": "Dario Snajder",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/dariosn85/ts-jest-mocker/issues"
+    },
+    "homepage": "https://github.com/dariosn85/ts-jest-mocker#readme",
+    "devDependencies": {
+        "@types/jest": "^28.1.7",
+        "husky": "^8.0.3",
+        "prettier": "^3.2.4",
+        "rimraf": "^3.0.2",
+        "ts-jest": "^28.0.8",
+        "ts-node": "^10.9.2",
+        "typescript": "^4.7.4"
+    },
+    "dependencies": {
+        "@types/jest": "^28.1.7",
+        "jest": "^28.1.3"
+    },
+    "files": [
+        "lib/lib/*"
+    ]
 }

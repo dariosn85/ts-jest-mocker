@@ -1,4 +1,4 @@
-import {mock} from "ts-jest-mocker";
+import { mock } from 'ts-jest-mocker';
 
 class SimpleRepository {
     public readonly simpleValue: string;

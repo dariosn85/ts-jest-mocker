@@ -1,4 +1,4 @@
-import {Class} from "./types";
+import { Class } from './types';
 
 const excludeFunctions = ['constructor'];
 
@@ -8,7 +8,7 @@ export class FunctionsFinder {
     }
 
     private static filter(functions: Set<string>): Set<string> {
-        return new Set(Array.from(functions).filter(f => !excludeFunctions.includes(f)));
+        return new Set(Array.from(functions).filter((f) => !excludeFunctions.includes(f)));
     }
 
     private static findOwnProperties(clazz: any): Set<string> {

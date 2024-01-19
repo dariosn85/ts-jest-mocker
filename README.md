@@ -8,18 +8,18 @@ which simplifies classes and interfaces mocking.
 [![Tests](https://github.com/dariosn85/ts-jest-mocker/actions/workflows/test.yml/badge.svg)](https://github.com/dariosn85/ts-jest-mocker/actions/workflows/test.yml)
 [![Publish](https://github.com/dariosn85/ts-jest-mocker/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/dariosn85/ts-jest-mocker/actions/workflows/npm-publish.yml)
 
-***
+---
 
 ## Table of Contents
 
-- [Getting started](#getting-started)
-    - [Mocking classes](#mocking-classes)
-    - [Mocking interfaces](#mocking-interfaces)
-- [More advanced example](#more-advanced-example)
-- [Jest API compatibility](#jest-api-compatibility)
-- [Why to use ts-jest-mocker](#why-to-use-ts-jest-mocker)
+-   [Getting started](#getting-started)
+    -   [Mocking classes](#mocking-classes)
+    -   [Mocking interfaces](#mocking-interfaces)
+-   [More advanced example](#more-advanced-example)
+-   [Jest API compatibility](#jest-api-compatibility)
+-   [Why to use ts-jest-mocker](#why-to-use-ts-jest-mocker)
 
-***
+---
 
 ## Getting started
 
@@ -32,7 +32,7 @@ npm install --save-dev ts-jest-mocker
 ### Mocking classes
 
 ```typescript
-import {mock} from "ts-jest-mocker";
+import { mock } from 'ts-jest-mocker';
 
 const serviceMock = mock(YourService); // automatically mocks all methods
 
@@ -42,7 +42,7 @@ serviceMock.yourMethod.mockReturnValue('Test');
 ### Mocking interfaces
 
 ```typescript
-import {mock} from "ts-jest-mocker";
+import { mock } from 'ts-jest-mocker';
 
 const interfaceMock = mock<YourInterface>(); // automatically mocks all interface methods
 
@@ -52,7 +52,7 @@ interfaceMock.yourMethod.mockReturnValue('Test');
 ### Using `Mock` type
 
 ```typescript
-import {Mock, mock} from "ts-jest-mocker";
+import { Mock, mock } from 'ts-jest-mocker';
 
 let serviceMock: Mock<YourService>;
 
@@ -70,7 +70,7 @@ This service has dependency to `UsersRepository` which is used to load users fro
 
 ```typescript title="users-repository.ts"
 export interface User {
-    name: string
+    name: string;
     age: number;
 }
 
@@ -79,12 +79,13 @@ export class UsersRepository {
         return [
             {
                 name: 'User1',
-                age: 30
-            }, {
+                age: 30,
+            },
+            {
                 name: 'User2',
-                age: 40
-            }
-        ]
+                age: 40,
+            },
+        ];
     }
 }
 ```
@@ -92,11 +93,10 @@ export class UsersRepository {
 `users-service.ts` file:
 
 ```typescript title="users-service.ts"
-import {User, UsersRepository} from "./users-repository";
+import { User, UsersRepository } from './users-repository';
 
 export class UsersService {
-    constructor(private readonly usersRepository: UsersRepository) {
-    }
+    constructor(private readonly usersRepository: UsersRepository) {}
 
     getUsers(): Array<User> {
         return this.usersRepository.getUsers();
@@ -111,18 +111,20 @@ automatically using `jest.fn()` internally and all type-checking will work out-o
 `users-service.test.ts` file:
 
 ```typescript title="users-service.test.ts"
-import {mock} from "ts-jest-mocker";
-import {UsersRepository} from "./users-repository";
-import {UsersService} from "./users-service";
+import { mock } from 'ts-jest-mocker';
+import { UsersRepository } from './users-repository';
+import { UsersService } from './users-service';
 
 describe('UsersService', () => {
     it('should return all users', () => {
         // GIVEN
         const repositoryMock = mock(UsersRepository);
-        repositoryMock.getUsers.mockReturnValue([{
-            name: 'Mocked user 1',
-            age: 40
-        }]);
+        repositoryMock.getUsers.mockReturnValue([
+            {
+                name: 'Mocked user 1',
+                age: 40,
+            },
+        ]);
         const service = new UsersService(repositoryMock);
 
         // WHEN
@@ -133,7 +135,7 @@ describe('UsersService', () => {
         expect(users.length).toBe(1);
         expect(users[0]).toEqual({
             name: 'Mocked user 1',
-            age: 40
+            age: 40,
         });
     });
 });
@@ -146,7 +148,7 @@ which main purpose is to add additional capability on top of Jest to simplify wr
 keep all the benefits of data types.
 
 While using ts-jest-mocker you don't need to use any custom calls to reset mock or anything.
-You call for example `jest.resetAllMocks()` as you usually do. 
+You call for example `jest.resetAllMocks()` as you usually do.
 
 ## Why to use ts-jest-mocker?
 
@@ -172,7 +174,7 @@ const mockUserRepository = {
 
     // ❌️ you have to mock all the methods
     // so mock and UsersRepository are compatible?
-    yourMethod20: jest.fn()
+    yourMethod20: jest.fn(),
 };
 
 const userService = new UserService(mockUserRepository);
@@ -181,7 +183,7 @@ const userService = new UserService(mockUserRepository);
 ```typescript
 const mockUserRepository = {
     yourMethod1: jest.fn(),
-    yourMethod2: jest.fn()
+    yourMethod2: jest.fn(),
 } as any;
 // ❌ you mock only what you need and then cast explicitly to any
 // and loose benefits from compilation phase?
@@ -195,11 +197,11 @@ const mockUserRepository = {
 };
 
 // ❌️ You often skip specifying mock types like jest.fn<User, [User]>() and
-// then need to check over and over again in the code what actually 
+// then need to check over and over again in the code what actually
 // mocked methods should return?
 mockUserRepository.yourMethod1.mockReturnedValue({
     name: 'User1',
-    age: 20
+    age: 20,
 });
 
 const userService = new UserService(mockUserRepository as any);
@@ -214,15 +216,15 @@ const mockUserRepository = mock(UsersRepository);
 
 mockUserRepository.yourMethod1.mockReturnedValue({
     name: 'User1',
-    age: 20
+    age: 20,
 }); // ✅ return type is automatically checked while compilation
 
 mockUserRepository.yourMethod1.mockReturnedValue({
-    name: 'User1'
+    name: 'User1',
 }); // ❗ [compilation error] - you will catch incorrect types
 
 mockUserRepository.yourMethod1.mockReturnedValue({
-    age: 20
+    age: 20,
 }); // ❗ [compilation error] - you will catch incorrect types
 
 // ❗ [compilation error] - you will catch incorrect types

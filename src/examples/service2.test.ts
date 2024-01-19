@@ -1,6 +1,6 @@
-import {mock, Mock} from "ts-jest-mocker";
-import {Repository} from "./app/repository";
-import {Service2} from "./app/service2";
+import { mock, Mock } from 'ts-jest-mocker';
+import { Repository } from './app/repository';
+import { Service2 } from './app/service2';
 
 describe('Class', () => {
     let service: Service2;

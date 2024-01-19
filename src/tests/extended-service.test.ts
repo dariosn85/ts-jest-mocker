@@ -1,4 +1,4 @@
-import {mock} from "ts-jest-mocker";
+import { mock } from 'ts-jest-mocker';
 
 class BaseOfBase {
     async base(): Promise<string> {
@@ -19,8 +19,7 @@ class Repository extends BaseRepository {
 }
 
 class SimpleService {
-    constructor(private readonly repository: Repository) {
-    }
+    constructor(private readonly repository: Repository) {}
 
     doSomething(): Promise<string> {
         return this.repository.doSomething();
