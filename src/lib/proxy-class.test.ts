@@ -42,4 +42,17 @@ describe('proxy class', () => {
         expect((proxy as any).method5).toBeUndefined(); // unknown method should not be mocked
         expect((proxy as any).method6).toBeUndefined(); // unknown method should not be mocked
     });
+
+    it('should throw error on methods whose implementation is not mocked explicitly', async () => {
+        const clazz = TestClass;
+        const proxy = createClassProxy(clazz);
+
+        expect(() => {
+            proxy.method1();
+        }).toThrowError('Method method1 is not mocked');
+
+        expect(() => {
+            (proxy as any)[Symbol('foo')]();
+        }).toThrowError('Method Symbol(foo) is not mocked');
+    });
 });

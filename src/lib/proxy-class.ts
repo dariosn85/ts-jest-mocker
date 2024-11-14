@@ -10,7 +10,9 @@ export const createClassProxy = <T>(clazz: Class<T>): Mock<T> => {
             }
 
             if (functions.has(property as string)) {
-                target[property] = jest.fn();
+                target[property] = jest.fn().mockImplementation(() => {
+                    throw new Error(`Method ${String(property)} is not mocked`);
+                });
             }
 
             return target[property];
