@@ -48,4 +48,13 @@ describe('proxy generic', () => {
         // THEN
         expect(result).toBeUndefined();
     });
+
+    it('should handle toEqual properly for same object', async () => {
+        // GIVEN
+        const testMock = createGenericProxy();
+
+        // WHEN
+        // THEN
+        expect(testMock).toEqual(testMock);
+    });
 });

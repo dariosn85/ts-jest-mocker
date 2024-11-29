@@ -1,7 +1,7 @@
 import { MergedConfig } from './config';
 
 export class FunctionsFilter {
-    static shouldFilter(property: string, config: MergedConfig): boolean {
+    static shouldFilter(property: string | Symbol, config: MergedConfig): boolean {
         if (config.includeMethodNames.has(property)) {
             return false;
         }

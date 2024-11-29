@@ -19,6 +19,7 @@ which simplifies classes and interfaces mocking.
 -   [Configuring ts-jest-mocker](#configuring-ts-jest-mocker)
 -   [Jest API compatibility](#jest-api-compatibility)
 -   [Why to use ts-jest-mocker](#why-to-use-ts-jest-mocker)
+-   [Notes](#notes)
 
 ---
 
@@ -153,7 +154,7 @@ behavior only in case of specific tests cases (mocks);
 #### excludeMethodNames
 
 **Default value (classes)**: [] (empty array - no excluding)
-**Default value (interfaces)**: ['then'] (then method - to cover "thenable" in promises)
+**Default value (interfaces)**: ['then', Symbol.iterator] (then method - to cover "thenable" in promises)
 
 **Description**: Methods specified on the exclusion list will be automatically excluded from mocking.
 
@@ -311,4 +312,44 @@ mockUserRepository.yourMethod1.mockReturnedValue({
 mockUserRepository.yourMethod1.mockReturnedValue(true);
 
 const userService = new UserService(mockUserRepository);
+```
+
+## Notes
+
+### ts-jest-mocker with RxJS
+
+When using `ts-jest-mocker` + [RxJS](https://rxjs.dev/) for mocking interfaces, there could be issues like
+`Method schedule is not mocked` as reported under [this issue](!https://github.com/dariosn85/ts-jest-mocker/issues/6).
+
+Issue appears when you pass mock to an [of()][https://rxjs.dev/api/index/function/of] operator, as under the hood
+operator internally checks if, so called, [Scheduler](https://rxjs.dev/guide/scheduler) was passed as a parameter.
+
+Example:
+
+```typescript
+import { firstValueFrom, of } from 'rxjs';
+
+const testMock = mock<YourInterface>();
+
+const observable = of(testMock);
+
+const value = await firstValueFrom(observable);
+```
+
+The above code will throw `Method 'schedule' is not mocked` error.
+
+This can be simply solved by excluding `schedule` methods from mocking.
+
+Example:
+
+```typescript
+import { firstValueFrom, of } from 'rxjs';
+
+const testMock = mock<YourInterface>({
+    excludeMethodNames: ['schedule'],
+});
+
+const observable = of(testMock);
+
+const value = await firstValueFrom(observable);
 ```

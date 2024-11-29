@@ -4,12 +4,12 @@ export interface MockConfigInternal {
     /**
      * The list of methods/functions (names) which will be excluded from mocking while creating mock.
      */
-    excludeMethodNames?: Array<string>;
+    excludeMethodNames?: Array<string | Symbol>;
 
     /**
      * The list of methods/functions (names) which will be included for mocking while creating mock.
      */
-    includeMethodNames?: Array<string>;
+    includeMethodNames?: Array<string | Symbol>;
 
     /**
      * If set to <i>true</i>, methods that are called, but not mocked by user, will throw an error and fail tests.
@@ -18,8 +18,8 @@ export interface MockConfigInternal {
 }
 
 export interface MergedConfig {
-    excludeMethodNames: Set<string>;
-    includeMethodNames: Set<string>;
+    excludeMethodNames: Set<string | Symbol>;
+    includeMethodNames: Set<string | Symbol>;
     failIfMockNotProvided: boolean;
 }
 

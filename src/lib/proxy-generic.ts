@@ -7,6 +7,9 @@ const defaultConfig: Required<MockConfig> = {
         // "then" is excluded in order to avoid issues with Promises. By standard, if object has "then" method it's "thenable" and
         // "promises will and should assimilate anything with a then method". See https://promisesaplus.com/#point-53 for more details.
         'then',
+
+        // for .toEqual() to work (Jest)
+        Symbol.iterator,
     ],
     failIfMockNotProvided: true,
     includeMethodNames: [],

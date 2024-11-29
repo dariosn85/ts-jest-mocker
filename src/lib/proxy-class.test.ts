@@ -72,4 +72,14 @@ describe('proxy class', () => {
 
         expect(proxy.method1()).toBeUndefined();
     });
+
+    it('should handle toEqual properly for same object', async () => {
+        // GIVEN
+        const clazz = TestClass;
+        const testMock = createClassProxy(clazz);
+
+        // WHEN
+        // THEN
+        expect(testMock).toEqual(testMock);
+    });
 });
