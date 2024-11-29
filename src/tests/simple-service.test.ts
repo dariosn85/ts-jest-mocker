@@ -68,7 +68,9 @@ describe('Simple service', () => {
 
     it('should provide types for parameters', async () => {
         // GIVEN
-        const repository = mock(SimpleRepository);
+        const repository = mock(SimpleRepository, {
+            failIfMockNotProvided: false,
+        });
 
         // WHEN
         await repository.doSomethingElse('call1');

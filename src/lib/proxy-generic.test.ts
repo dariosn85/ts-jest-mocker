@@ -23,14 +23,29 @@ describe('proxy generic', () => {
     });
 
     it('should throw error on methods whose implementation is not mocked explicitly', async () => {
+        // GIVEN
         const proxy = createGenericProxy<TestInterface>();
 
-        expect(() => {
-            proxy.method1();
-        }).toThrowError('Method method1 is not mocked');
+        // WHEN
+        const call1 = () => proxy.method1();
+        const call2 = () => (proxy as any)[Symbol('foo')]();
 
-        expect(() => {
-            (proxy as any)[Symbol('foo')]();
-        }).toThrowError('Method Symbol(foo) is not mocked');
+        // THEN
+        expect(call1).toThrowError(`Method 'method1' is not mocked`);
+
+        expect(call2).toThrowError(`Method 'Symbol(foo)' is not mocked`);
+    });
+
+    it('should not throw an error on methods whose implementation is not mocked explicitly when failIfMockNotProvided=false', async () => {
+        // GIVEN
+        const proxy = createGenericProxy<TestInterface>({
+            failIfMockNotProvided: false,
+        });
+
+        // WHEN
+        const result = proxy.method1();
+
+        // THEN
+        expect(result).toBeUndefined();
     });
 });

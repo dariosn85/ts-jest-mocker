@@ -9,3 +9,5 @@ export type Mock<T> = T & {
     // all functions are converted to jest.Mock with corresponding return type (generics passed to jest.Mock)
     [P in keyof T as T[P] extends FunctionType ? P : never]: JestMockType<T[P]>;
 };
+
+export { MockConfig } from './config';

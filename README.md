@@ -16,6 +16,7 @@ which simplifies classes and interfaces mocking.
     -   [Mocking classes](#mocking-classes)
     -   [Mocking interfaces](#mocking-interfaces)
 -   [More advanced example](#more-advanced-example)
+-   [Configuring ts-jest-mocker](#configuring-ts-jest-mocker)
 -   [Jest API compatibility](#jest-api-compatibility)
 -   [Why to use ts-jest-mocker](#why-to-use-ts-jest-mocker)
 
@@ -138,6 +139,85 @@ describe('UsersService', () => {
             age: 40,
         });
     });
+});
+```
+
+## Configuring ts-jest-mocker
+
+In order to be more flexible and allow covering more complex testing scenarios, `ts-jest-mocker` now allows specifying
+mocking configuration. Configuration can be global, to cover all test cases (mocks) at once, or local, to cover and change
+behavior only in case of specific tests cases (mocks);
+
+### Configuration options
+
+#### excludeMethodNames
+
+**Default value (classes)**: [] (empty array - no excluding)
+**Default value (interfaces)**: ['then'] (then method - to cover "thenable" in promises)
+
+**Description**: Methods specified on the exclusion list will be automatically excluded from mocking.
+
+Examples:
+
+```typescript
+// mock with local config
+const mock = mock(MyClass, {
+    excludeMethodNames: ['schedule', 'then'],
+});
+```
+
+```typescript
+// global config
+TsJestMocker.setConfig({
+    excludeMethodNames: ['schedule', 'then'],
+});
+```
+
+#### includeMethodNames
+
+**Default value (classes)**: [] (empty array - no additional including)
+**Default value (interfaces)**: [] (empty array - no additional including)
+
+**Description**: Methods specified on the inclusion list will be included and covered with mocking, even if the same method exists
+on the exclusion list (by default or added by user).
+
+Examples:
+
+```typescript
+// mock with local config
+const mock = mock({
+    includeMethodNames: ['then'], // "then" will be mocked even if it's by default (for interfaces) excluded
+});
+```
+
+```typescript
+// global config
+TsJestMocker.setConfig({
+    includeMethodNames: ['then'],
+});
+```
+
+#### failIfMockNotProvided
+
+**Default value (classes)**: `true`
+**Default value (interfaces)**: `true`
+
+**Description**: By default, calling method on mock will throw an error if return value was not specified by user. This behavior
+can now be changed by setting `failIfMockNotProvided` to `false`.
+
+Examples:
+
+```typescript
+// mock with local config
+const mock = mock({
+    failIfMockNotProvided: false,
+});
+```
+
+```typescript
+// global config
+TsJestMocker.setConfig({
+    failIfMockNotProvided: false,
 });
 ```
 
