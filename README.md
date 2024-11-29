@@ -20,6 +20,7 @@ which simplifies classes and interfaces mocking.
 -   [Jest API compatibility](#jest-api-compatibility)
 -   [Why to use ts-jest-mocker](#why-to-use-ts-jest-mocker)
 -   [Notes](#notes)
+    -   [ts-jest-mocker with RxJS](#ts-jest-mocker-with-rxjs)
 
 ---
 
