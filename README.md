@@ -320,7 +320,7 @@ const userService = new UserService(mockUserRepository);
 ### ts-jest-mocker with RxJS
 
 When using `ts-jest-mocker` + [RxJS](https://rxjs.dev/) for mocking interfaces, there could be issues like
-`Method schedule is not mocked` as reported under [this issue](!https://github.com/dariosn85/ts-jest-mocker/issues/6).
+`Method schedule is not mocked` as reported under [this issue](https://github.com/dariosn85/ts-jest-mocker/issues/6).
 
 Issue appears when you pass mock to an [of()](https://rxjs.dev/api/index/function/of) operator, as under the hood
 operator internally checks if, so called, [Scheduler](https://rxjs.dev/guide/scheduler) was passed as a parameter.
