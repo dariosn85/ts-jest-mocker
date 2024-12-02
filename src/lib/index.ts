@@ -19,4 +19,4 @@ export function mock<T>(clazzOrMockConfig?: { new (...args: any[]): T } | MockCo
     return createClassProxy<T>(clazzOrMockConfig, mockConfig);
 }
 
-export { Mock } from './types';
+export { Mock, MockConfig, TsJestMocker } from './types';

@@ -24,7 +24,7 @@ export interface MergedConfig {
 }
 
 export interface GlobalTsJestMocker {
-    config?: MockConfig;
+    tsJestMockerConfig?: MockConfig;
 }
 
 export namespace MergedConfig {
@@ -63,14 +63,14 @@ export namespace TsJestMocker {
      * @param config The TS Jest Mocker configuration that will be used for all mocks by default.
      */
     export function setConfig(config: MockConfig | undefined): void {
-        (global as GlobalTsJestMocker).config = config;
+        (global as GlobalTsJestMocker).tsJestMockerConfig = config;
     }
 
     /**
      * Gets global {@link MockConfig}.
      */
     export function getConfig(): MockConfig | undefined {
-        return (global as GlobalTsJestMocker).config;
+        return (global as GlobalTsJestMocker).tsJestMockerConfig;
     }
 
     /**

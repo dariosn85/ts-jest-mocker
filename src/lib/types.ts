@@ -10,4 +10,4 @@ export type Mock<T> = T & {
     [P in keyof T as T[P] extends FunctionType ? P : never]: JestMockType<T[P]>;
 };
 
-export { MockConfig } from './config';
+export { MockConfig, TsJestMocker } from './config';

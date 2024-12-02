@@ -150,6 +150,43 @@ In order to be more flexible and allow covering more complex testing scenarios, 
 mocking configuration. Configuration can be global, to cover all test cases (mocks) at once, or local, to cover and change
 behavior only in case of specific tests cases (mocks);
 
+#### Local configuration
+
+```typescript
+mock(MyClass, {
+    // config values
+});
+```
+
+#### Global config
+
+In order for configuration to be properly passed to test environments, you can define `ts-jest-mocker.setup.ts` configuration file
+and specify it in [setupFiles array](https://jestjs.io/docs/configuration#setupfiles-array) in
+[Jest configuration](https://jestjs.io/docs/configuration).
+
+##### ts-jest-mocker.setup.ts
+
+```typescript
+import { TsJestMocker } from 'ts-jest-mocker';
+
+TsJestMocker.setConfig({
+    failIfMockNotProvided: false,
+});
+```
+
+##### jest.config.ts
+
+```typescript
+import type { Config } from 'jest';
+
+const config: Config = {
+  verbose: true,
+  setupFiles: ['./ts-jest-mocker.setup.ts'],
+};
+
+export default config;
+```
+
 ### Configuration options
 
 #### excludeMethodNames
