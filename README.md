@@ -180,8 +180,8 @@ TsJestMocker.setConfig({
 import type { Config } from 'jest';
 
 const config: Config = {
-  verbose: true,
-  setupFiles: ['./ts-jest-mocker.setup.ts'],
+    verbose: true,
+    setupFiles: ['./ts-jest-mocker.setup.ts'],
 };
 
 export default config;
