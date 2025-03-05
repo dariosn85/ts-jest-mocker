@@ -12,15 +12,15 @@ which simplifies classes and interfaces mocking.
 
 ## Table of Contents
 
--   [Getting started](#getting-started)
-    -   [Mocking classes](#mocking-classes)
-    -   [Mocking interfaces](#mocking-interfaces)
--   [More advanced example](#more-advanced-example)
--   [Configuring ts-jest-mocker](#configuring-ts-jest-mocker)
--   [Jest API compatibility](#jest-api-compatibility)
--   [Why to use ts-jest-mocker](#why-to-use-ts-jest-mocker)
--   [Notes](#notes)
-    -   [ts-jest-mocker with RxJS](#ts-jest-mocker-with-rxjs)
+- [Getting started](#getting-started)
+    - [Mocking classes](#mocking-classes)
+    - [Mocking interfaces](#mocking-interfaces)
+- [More advanced example](#more-advanced-example)
+- [Configuring ts-jest-mocker](#configuring-ts-jest-mocker)
+- [Jest API compatibility](#jest-api-compatibility)
+- [Why to use ts-jest-mocker](#why-to-use-ts-jest-mocker)
+- [Notes](#notes)
+    - [ts-jest-mocker with RxJS](#ts-jest-mocker-with-rxjs)
 
 ---
 

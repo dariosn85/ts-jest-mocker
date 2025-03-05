@@ -109,9 +109,9 @@
         /* Skip type checking all .d.ts files. */
 
         "paths": {
-            "ts-jest-mocker": ["src/lib/index.ts"],
+            "ts-jest-mocker": ["src/lib/index.ts"]
         },
-        "baseUrl": ".",
+        "baseUrl": "."
     },
-    "exclude": ["jest.config.ts"],
+    "exclude": ["jest.config.ts"]
 }
